@@ -1,4 +1,4 @@
-import data
+from data import Book
 import lab6
 import unittest
 
@@ -64,17 +64,49 @@ class TestCases(unittest.TestCase):
 
 
     # Part 1
+    def test_book(self):
+        books = [Book(["F. Scott Fitzgerald"], "The Great Gatsby")]
+        lab6.selection_sort_books(books)
+        self.assertEqual(books, [Book(["F. Scott Fitzgerald"], "The Great Gatsby")])
 
+    def test_books(self):
+        books = [
+            Book(["Zebra Author"], "Zebra"),
+            Book(["Apple Author"], "Apple"),
+            Book(["Mango Author"], "Mango")
+        ]
+        lab6.selection_sort_books(books)
+        expected = [
+            Book(["Apple Author"], "Apple"),
+            Book(["Mango Author"], "Mango"),
+            Book(["Zebra Author"], "Zebra")
+        ]
+        self.assertEqual(books, expected)
 
     # Part 2
 
+    def test_swap_cases1(self):
+        self.assertEqual(lab6.swap_case("Hello World!"), "hELLO wORLD!")
 
+    def test_swap_cases2(self):
+        self.assertEqual(lab6.swap_case("123 ABC xyz!"), "123 abc XYZ!")
     # Part 3
+    def test_str_translate1(self):
+        self.assertEqual(lab6.str_translate("Hi My Name is Jack Jarvis",'J','m'),"Hi My Name is mack marvis")
 
-
+    def test_str_translate2(self):
+        self.assertEqual(lab6.str_translate("Hello Everyone", 'o', '0'), "Hell0 Every0ne")
     # Part 4
 
 
+    def test_histogram1(self):
+        self.assertEqual(lab6.histogram("hello world "), {"hello": 1, "world": 1})
+
+
+    def test_histogram2(self):
+        self.assertEqual(
+            lab6.histogram("Hi my name is Jack Jarvis, Jack Jarvis is my name"),
+            {'Hi': 1, 'Jack': 2, 'Jarvis': 1, 'Jarvis,': 1, 'is': 2, 'my': 2, 'name': 2})
 
 
 
